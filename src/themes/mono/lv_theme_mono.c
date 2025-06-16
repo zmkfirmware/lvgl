@@ -203,7 +203,7 @@ void lv_theme_mono_deinit(void)
     }
 }
 
-lv_theme_t * lv_theme_mono_init(lv_display_t * disp, bool dark_bg, const lv_font_t * font)
+lv_theme_t * lv_theme_mono_init(lv_display_t * disp, bool dark_bg, const lv_font_t * font, const lv_font_t * small_font, const lv_font_t * large_font)
 {
     /*This trick is required only to avoid the garbage collection of
      *styles' data if LVGL is used in a binding (e.g. MicroPython)
@@ -214,10 +214,12 @@ lv_theme_t * lv_theme_mono_init(lv_display_t * disp, bool dark_bg, const lv_font
 
     my_theme_t * theme = theme_def;
 
+    const lv_font_t * def_font = font ? font : LV_FONT_DEFAULT;
+
     theme->base.disp = disp;
-    theme->base.font_small = LV_FONT_DEFAULT;
-    theme->base.font_normal = LV_FONT_DEFAULT;
-    theme->base.font_large = LV_FONT_DEFAULT;
+    theme->base.font_small = small_font ? small_font : def_font;
+    theme->base.font_normal = def_font;
+    theme->base.font_large = large_font ? large_font : def_font;
     theme->base.apply_cb = theme_apply;
 
     style_init(theme, dark_bg, font);
