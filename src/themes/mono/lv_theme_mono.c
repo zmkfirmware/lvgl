@@ -181,7 +181,7 @@ static void style_init(my_theme_t * theme, bool dark_bg, const lv_font_t * font)
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_theme_t * lv_theme_mono_init(lv_display_t * disp, bool dark_bg, const lv_font_t * font)
+lv_theme_t * lv_theme_mono_init(lv_display_t * disp, bool dark_bg, const lv_font_t * font, const lv_font_t * small_font, const lv_font_t * large_font)
 {
     /*This trick is required only to avoid the garbage collection of
      *styles' data if LVGL is used in a binding (e.g. MicroPython)
@@ -194,9 +194,9 @@ lv_theme_t * lv_theme_mono_init(lv_display_t * disp, bool dark_bg, const lv_font
     my_theme_t * theme = theme_def;
 
     theme->base.disp = disp;
-    theme->base.font_small = LV_FONT_DEFAULT;
-    theme->base.font_normal = LV_FONT_DEFAULT;
-    theme->base.font_large = LV_FONT_DEFAULT;
+    theme->base.font_small = small_font;
+    theme->base.font_normal = font;
+    theme->base.font_large = large_font;
     theme->base.apply_cb = theme_apply;
 #if LV_USE_EXT_DATA
     theme->base.ext_data.free_cb = NULL;

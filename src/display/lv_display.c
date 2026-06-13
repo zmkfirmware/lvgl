@@ -144,7 +144,7 @@ lv_display_t * lv_display_create(int32_t hor_res, int32_t ver_res)
     }
 #elif LV_USE_THEME_MONO
     if(lv_theme_mono_is_inited() == false) {
-        disp->theme = lv_theme_mono_init(disp, false, LV_FONT_DEFAULT);
+        disp->theme = lv_theme_mono_init(disp, false, LV_FONT_DEFAULT, LV_FONT_DEFAULT, LV_FONT_DEFAULT);
     }
     else {
         disp->theme = lv_theme_mono_get();
